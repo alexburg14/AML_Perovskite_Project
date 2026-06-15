@@ -1,0 +1,150 @@
+{
+  "n_rows": 16323,
+  "n_cols": 66,
+  "n_composition_features": 56,
+  "n_unique_formulas": 3501,
+  "missing_values": 0,
+  "duplicate_rows": 0,
+  "metal_fraction_Eg0": 0.693,
+  "crystal_system_counts": {
+    "cubic": 5544,
+    "trigonal": 4691,
+    "orthorhombic": 3089,
+    "tetragonal": 2089,
+    "monoclinic": 603,
+    "hexagonal": 172,
+    "triclinic": 135
+  },
+  "stability_fraction": {
+    "Es<=0.0": 0.05,
+    "Es<=0.025": 0.123,
+    "Es<=0.05": 0.167,
+    "Es<=0.1": 0.243
+  },
+  "target_describe": {
+    "Es": {
+      "count": 16323.0,
+      "mean": 0.479,
+      "std": 0.556,
+      "min": 0.0,
+      "25%": 0.105,
+      "50%": 0.282,
+      "75%": 0.652,
+      "max": 4.73
+    },
+    "Ef": {
+      "count": 16323.0,
+      "mean": -1.852,
+      "std": 0.937,
+      "min": -3.877,
+      "25%": -2.53,
+      "50%": -1.948,
+      "75%": -1.231,
+      "max": 2.358
+    },
+    "Eg": {
+      "count": 16323.0,
+      "mean": 0.667,
+      "std": 1.299,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.759,
+      "max": 7.944
+    }
+  },
+  "feature_redundancy_pairs_over_0.9": 25,
+  "feature_pairs_total": 1540,
+  "irreducible_floor": {
+    "Ef": {
+      "within_formula_var": 0.2154,
+      "total_var": 0.878,
+      "ceiling_r2_composition_only": 0.755
+    },
+    "Eg": {
+      "within_formula_var": 0.41,
+      "total_var": 1.6866,
+      "ceiling_r2_composition_only": 0.757
+    },
+    "Es": {
+      "within_formula_var": 0.2154,
+      "total_var": 0.3092,
+      "ceiling_r2_composition_only": 0.303
+    }
+  },
+  "stability_classification_ceiling": {
+    "threshold": 0.1,
+    "positive_base_rate": 0.243,
+    "majority_class_baseline_acc": 0.757,
+    "formulas_straddling_threshold": 0.252,
+    "oracle_accuracy_ceiling": 0.847
+  },
+  "rf_baseline_grouped_cv": {
+    "Ef": {
+      "r2_grouped_cv": 0.69,
+      "mae": 0.372
+    },
+    "Eg": {
+      "r2_grouped_cv": 0.573,
+      "mae": 0.503
+    }
+  },
+  "feature_list": [
+    "z_mean",
+    "z_std",
+    "grp_mean",
+    "grp_std",
+    "row_mean",
+    "row_std",
+    "pet_mn_mean",
+    "pet_mn_std",
+    "mn_mean",
+    "mn_std",
+    "iupac_mean",
+    "iupac_std",
+    "av_ionrad_mean",
+    "av_ionrad_std",
+    "atom_rad_mean",
+    "atom_rad_std",
+    "cal_atom_rad_mean",
+    "cal_atom_rad_std",
+    "cov_rad_mean",
+    "cov_rad_std",
+    "vdw_mean",
+    "vdw_std",
+    "x_mean",
+    "x_std",
+    "val_mean",
+    "val_std",
+    "ea_mean",
+    "ea_std",
+    "ie_mean",
+    "ie_std",
+    "p_mean",
+    "p_std",
+    "rsp_mean",
+    "rsp_std",
+    "av_rsp_mean",
+    "av_rsp_std",
+    "atom_mass_mean",
+    "atom_mass_std",
+    "mol_vol_mean",
+    "mol_vol_std",
+    "bp_mean",
+    "bp_std",
+    "rho_mean",
+    "rho_std",
+    "mp_mean",
+    "mp_std",
+    "k_mean",
+    "k_std",
+    "heat_fus_mean",
+    "heat_fus_std",
+    "heat_vap_mean",
+    "heat_vap_std",
+    "spec_heat_mean",
+    "spec_heat_std",
+    "gtf",
+    "of"
+  ]
+}

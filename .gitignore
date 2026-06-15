@@ -1,0 +1,10 @@
+.venv/
+.dist/
+__pycache__/
+*.pyc
+
+
+#misc
+eda.py
+*.md
+!README.md
