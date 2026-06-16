@@ -11,7 +11,10 @@ expensive DFT — while penalizing toxic and rare-earth elements.
 |------|-------------|
 | `data/oqmd_abx3_data.csv` | Main dataset — 16,323 ABX₃ perovskites (OQMD), composition features + targets `Ef`, `Eg`, `Es`, crystal system. |
 | `data/mp_abx3_data.csv` | Supplementary Materials Project set (structural / elastic properties). |
-| `analysis/figures/` | Exploratory-data-analysis figures. |
+| `data/structures/oqmd_structures.jsonl` | Relaxed **atomic structures** (lattice + atomic positions) fetched from the OQMD API for 16,316/16,323 entries (99.96%). One JSON record per line, joinable to the CSV on `entry_id`. |
+| `scripts/fetch_oqmd_structures.py` | Reproducible fetcher for the structures above (resumable; handles rate-limits/outages). |
+| `scripts/structures.py` | Loader + validator + visualizer: JSONL record → ASE `Atoms` / pymatgen `Structure`. |
+| `analysis/figures/` | Exploratory-data-analysis figures, incl. `fig10_*` polymorph structure visualizations. |
 | `analysis/stats_summary.json` | Machine-readable summary of the EDA (distributions, ceilings, baselines). |
 
 ## Data source & citation

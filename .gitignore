@@ -8,3 +8,7 @@ __pycache__/
 eda.py
 *.md
 !README.md
+
+# fetch working artifacts (resume state, logs, throwaway helpers)
+data/structures/_*
+scripts/_*
