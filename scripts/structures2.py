@@ -15,10 +15,21 @@ from pathlib import Path
 
 import numpy as np
 from ase import Atoms
+import pandas as pd  # <--- NEU IMPORTIEREN für die CSV
 
 ROOT = Path(__file__).resolve().parent.parent
+SRC = ROOT / "data" / "oqmd_abx3_data.csv"  # <--- NEU: Pfad zur Basis-CSV
 JSONL = ROOT / "data" / "structures" / "oqmd_structures.jsonl"
 FIGDIR = ROOT / "analysis" / "figures"
+
+# === NEU: Ein Mapping von entry_id -> cs aus der CSV erstellen ===
+if SRC.exists():
+    _df_base = pd.read_csv(SRC)
+    # Erstellt ein schnelles Dictionary {647362: 'orthorhombic', ...}
+    ID_TO_CS = dict(zip(_df_base["entry_id"], _df_base["cs"]))
+else:
+    ID_TO_CS = {}
+    print(f"Warnung: {SRC} nicht gefunden. Kristallsysteme (cs) können nicht gemappt werden.")
 
 
 def parse_site(s: str):
@@ -34,9 +45,16 @@ def record_to_atoms(rec: dict) -> Atoms:
     atoms = Atoms(symbols=list(symbols),
                   scaled_positions=np.array(fracs),
                   cell=cell, pbc=True)
+    
+    # Standard-Metadaten aus der JSONL holen
     atoms.info.update({k: rec.get(k) for k in
                        ("name", "entry_id", "spacegroup", "band_gap",
-                        "delta_e", "stability", "cs")})
+                        "delta_e", "stability")})
+    
+    # === HIER DIE ÄNDERUNG: 'cs' dynamisch aus unserem CSV-Mapping anhängen ===
+    eid = int(rec["entry_id"])
+    atoms.info["cs"] = ID_TO_CS.get(eid, "Unbekannt")
+    
     return atoms
 
 
