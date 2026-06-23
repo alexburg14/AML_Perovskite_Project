@@ -12,3 +12,11 @@ eda.py
 # fetch working artifacts (resume state, logs, throwaway helpers)
 data/structures/_*
 scripts/_*
+
+#heavy datasets
+perovskite_coulomb_features_reduced.npy
+perovskite_ewald_features_reduced.npy
+perovskite_soap_features_reduced.npy
+perovskite_soap_features.npy
+#Venv
+PerovskiteProjectVenv/
