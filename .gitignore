@@ -20,3 +20,6 @@ perovskite_soap_features_reduced.npy
 perovskite_soap_features.npy
 #Venv
 PerovskiteProjectVenv/
+
+#figures
+/Users/alexgreck/Documents/Studium M.Sc./Atomistic Modeling/AML_Perovskite_Project/analysis/figures/
