@@ -13,13 +13,8 @@ eda.py
 data/structures/_*
 scripts/_*
 
-#heavy datasets
-perovskite_coulomb_features_reduced.npy
-perovskite_ewald_features_reduced.npy
-perovskite_soap_features_reduced.npy
-perovskite_soap_features.npy
+#heavy datasets (regenerated feature matrices)
+data/features/
+*.npy
 #Venv
 PerovskiteProjectVenv/
-
-#figures
-/Users/alexgreck/Documents/Studium M.Sc./Atomistic Modeling/AML_Perovskite_Project/analysis/figures/

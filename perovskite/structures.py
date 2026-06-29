@@ -6,19 +6,29 @@ data/oqmd_abx3_data.csv on `entry_id`) and turns each record into an ASE Atoms
 object using the lattice (`unit_cell`) and fractional `sites`.
 
 Usage:
-    python scripts/structures.py            # validate + render demo figures
-    from scripts.structures import load_by_entry_id, record_to_atoms
+    python -m perovskite.structures        # validate + render demo figures
+    from perovskite.structures import load_by_entry_id, record_to_atoms
 """
 from __future__ import annotations
 import json
-from pathlib import Path
 
 import numpy as np
 from ase import Atoms
+import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
-JSONL = ROOT / "data" / "structures" / "oqmd_structures.jsonl"
-FIGDIR = ROOT / "analysis" / "figures"
+from . import config
+
+SRC = config.OQMD_CSV
+JSONL = config.STRUCTURES_JSONL
+FIGDIR = config.FIGURES_DIR
+
+# Mapping entry_id -> cs (crystal system) from the base CSV.
+if SRC.exists():
+    _df_base = pd.read_csv(SRC)
+    ID_TO_CS = dict(zip(_df_base["entry_id"], _df_base["cs"]))
+else:
+    ID_TO_CS = {}
+    print(f"Warnung: {SRC} nicht gefunden. Kristallsysteme (cs) können nicht gemappt werden.")
 
 
 def parse_site(s: str):
@@ -34,9 +44,16 @@ def record_to_atoms(rec: dict) -> Atoms:
     atoms = Atoms(symbols=list(symbols),
                   scaled_positions=np.array(fracs),
                   cell=cell, pbc=True)
+
+    # Standard metadata from the JSONL record
     atoms.info.update({k: rec.get(k) for k in
                        ("name", "entry_id", "spacegroup", "band_gap",
-                        "delta_e", "stability", "cs")})
+                        "delta_e", "stability")})
+
+    # Attach crystal system (cs) from the CSV mapping
+    eid = int(rec["entry_id"])
+    atoms.info["cs"] = ID_TO_CS.get(eid, "Unbekannt")
+
     return atoms
 
 
