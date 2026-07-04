@@ -1,0 +1,13 @@
+desc,approach,pos_rate,bal_acc,pr_auc
+soap_pca,Dummy(stratified),0.138,0.502,0.139
+soap_pca,RF(balanced),0.138,0.655,0.558
+soap_pca,HistGB(balanced),0.138,0.691,0.558
+coulomb,Dummy(stratified),0.131,0.499,0.131
+coulomb,RF(balanced),0.131,0.721,0.546
+coulomb,HistGB(balanced),0.131,0.737,0.515
+ewald,Dummy(stratified),0.131,0.499,0.131
+ewald,RF(balanced),0.131,0.695,0.503
+ewald,HistGB(balanced),0.131,0.718,0.505
+soap_pca,regress->threshold,0.138,0.524,0.4
+coulomb,regress->threshold,0.131,0.545,0.46
+ewald,regress->threshold,0.131,0.552,0.444
