@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GroupKFold
 
 from . import config
 
@@ -57,3 +57,21 @@ def load_features_and_meta(descriptor: str = "soap"):
 def make_split(X, y, test_size: float = 0.2, random_state: int = 42):
     """Thin wrapper around train_test_split with the project's defaults."""
     return train_test_split(X, y, test_size=test_size, random_state=random_state)
+
+
+def make_group_cv(df_meta: pd.DataFrame, n_splits: int = 3):
+    """Composition-grouped CV splitter.
+
+    Groups rows by ``name`` (chemical formula) so every polymorph of a composition
+    lands in the same fold. This removes polymorph leakage: a random split scatters
+    same-composition, near-identical structures across train and test, which
+    optimistically inflates scores.
+
+    Returns
+    -------
+    (cv, groups) : a ``GroupKFold(n_splits)`` and the group labels, both passed
+        straight to ``cross_validate(..., cv=cv, groups=groups)`` /
+        ``cross_val_predict(..., cv=cv, groups=groups)``.
+    """
+    groups = df_meta["name"].to_numpy()
+    return GroupKFold(n_splits=n_splits), groups
