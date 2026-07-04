@@ -30,16 +30,19 @@ SPECIES_LIST = STRUCTURES_DIR / "global_species_list.txt"
 # Reduced metadata overviews (one per descriptor variant)
 META_CSV = {
     "soap": DATA_DIR / "metadata_overview_reduced.csv",
+    "soap_pca": DATA_DIR / "metadata_overview_reduced.csv",  # same rows as "soap"
     "coulomb": DATA_DIR / "metadata_overview_reduced_CoulombM.csv",
     "ewald": DATA_DIR / "metadata_overview_reduced_EwaldM.csv",
 }
 
 # Feature matrices, keyed by descriptor. Regenerated on demand by the feature
 # cells in notebooks/eda_and_features.ipynb (none ship in the repo -- gitignored).
+# "soap_pca" is the PCA-compressed SOAP built by scripts/build_soap_pca.py.
 FEATURES_NPY = {
     "soap": FEATURES_DIR / "soap_reduced.npy",
+    "soap_pca": FEATURES_DIR / "soap_pca.npy",
     "coulomb": FEATURES_DIR / "coulomb_reduced.npy",
     "ewald": FEATURES_DIR / "ewald_reduced.npy",
 }
 
-DESCRIPTORS = tuple(META_CSV)  # ("soap", "coulomb", "ewald")
+DESCRIPTORS = tuple(META_CSV)  # ("soap", "soap_pca", "coulomb", "ewald")

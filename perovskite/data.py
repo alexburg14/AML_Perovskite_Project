@@ -38,10 +38,12 @@ def load_features_and_meta(descriptor: str = "soap"):
 
     df_meta = pd.read_csv(meta_path)
     if not feat_path.exists():
-        raise FileNotFoundError(
-            f"{feat_path} not found. Regenerate it via the feature cells in "
-            f"notebooks/eda_and_features.ipynb."
+        hint = (
+            "scripts/build_soap_pca.py"
+            if descriptor == "soap_pca"
+            else "the feature cells in notebooks/eda_and_features.ipynb"
         )
+        raise FileNotFoundError(f"{feat_path} not found. Regenerate it via {hint}.")
     X = np.load(feat_path)
 
     if X.shape[0] != df_meta.shape[0]:
