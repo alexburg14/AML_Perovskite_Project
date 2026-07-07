@@ -13,7 +13,7 @@ expensive DFT — while penalizing toxic and rare-earth elements.
 | `data/mp_abx3_data.csv` | Supplementary Materials Project set (structural / elastic properties). |
 | `data/structures/oqmd_structures.jsonl` | Relaxed **atomic structures** (lattice + atomic positions) fetched from the OQMD API for 16,316/16,323 entries (99.96%). One JSON record per line, joinable to the CSV on `entry_id`. |
 | `data/metadata_overview*.csv` | Reduced metadata tables (`band_gap`, `is_metal`, `energy_above_hull`, `is_stable`, …); one variant per descriptor (`_reduced`, `_reduced_CoulombM`, `_reduced_EwaldM`). |
-| `data/features/` | Regenerated descriptor matrices (`*_reduced.npy` for SOAP / Coulomb / Ewald). Gitignored — rebuilt by `notebooks/eda_and_features.ipynb`. |
+| `_regen_output/` | Regenerated descriptor matrices (`*_reduced.npy` for SOAP / Coulomb / Ewald) + metadata CSVs. Gitignored — rebuilt by `scripts/build_datasets.py`. |
 | `perovskite/` | Lightweight shared package: `config` (paths), `data` (feature/metadata loaders), `evaluation` (confusion-matrix + regression metrics), `structures` (JSONL → ASE `Atoms` loader/validator/visualizer). |
 | `notebooks/` | EDA + feature engineering (`eda_and_features`) and the model notebooks (`band_gap_classification`, `kernel_svm`, `hull_regression`). |
 | `scripts/fetch_oqmd_structures.py` | Reproducible fetcher for the structures above (resumable; handles rate-limits/outages). |

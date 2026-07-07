@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.metrics import (
     confusion_matrix,
     max_error,
@@ -20,6 +19,8 @@ from sklearn.metrics import (
 
 def plot_confusion_matrix(model, X_test, y_test, labels_x, labels_y):
     """Row-normalised (percentage) confusion matrix for a classifier."""
+    import seaborn as sns  # local: keep the package importable without a plotting stack
+
     y_pred = model.predict(X_test)
 
     cm_percentage = confusion_matrix(y_test, y_pred, normalize="true")
